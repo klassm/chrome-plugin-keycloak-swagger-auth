@@ -15,7 +15,8 @@ async function getOptions() {
     chrome.storage.sync.get({
       username: '',
       password: '',
-      keycloakUrl: ''
+      keycloakUrl: '',
+      realm: '',
     }, items => {
       resolve(items);
     });
@@ -23,8 +24,8 @@ async function getOptions() {
 }
 
 async function getBearerToken() {
-  const { username, password, keycloakUrl} = await getOptions();
-  const keycloakTokenUrl = keycloakUrl + '/auth/realms/HC_CDR/protocol/openid-connect/token';
+  const { username, password, keycloakUrl, realm} = await getOptions();
+  const keycloakTokenUrl = `${keycloakUrl}/auth/realms/${realm}/protocol/openid-connect/token`;
   const axiosConfig = {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
