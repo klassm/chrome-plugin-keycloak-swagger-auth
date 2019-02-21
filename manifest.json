@@ -1,0 +1,20 @@
+{
+  "name": "Swagger UI Keycloak",
+  "version": "1.0",
+  "description": "Get the authentication bearer token from a configurable Keycloak instance",
+  "manifest_version": 2,
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*/*"
+      ],
+      "js": [
+        "content.js",
+        "lib/axios.min.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": ["storage"]
+}
