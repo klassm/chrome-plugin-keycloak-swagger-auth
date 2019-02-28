@@ -31,7 +31,7 @@ async function getBearerToken() {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
   };
-  const params = `client_id=admin-cli&grant_type=password&password=${password}&username=${username}`;
+  const params = `client_id=admin-cli&grant_type=password&password=${encodeURIComponent(password)}&username=${username}`;
   const response = await axios.post(keycloakTokenUrl, params, axiosConfig);
   return response.data.access_token;
 }
