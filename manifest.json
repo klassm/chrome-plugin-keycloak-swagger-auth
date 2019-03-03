@@ -4,6 +4,13 @@
   "description": "Get the authentication bearer token from a configurable Keycloak instance",
   "manifest_version": 2,
   "options_page": "options.html",
+  "background": {
+    "scripts": [
+      "lib/axios.min.js",
+      "keycloak.js",
+      "background.js"
+    ]
+  },
   "content_scripts": [
     {
       "matches": [
@@ -11,11 +18,12 @@
         "http://*/*"
       ],
       "js": [
+        "keycloak.js",
         "content.js",
         "lib/axios.min.js"
       ],
       "run_at": "document_end"
     }
   ],
-  "permissions": ["storage"]
+  "permissions": ["storage", "webRequest", "webRequestBlocking", "tabs", "alarms", "*://*/*"]
 }
