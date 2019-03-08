@@ -41,11 +41,14 @@ function loadCurrentTabUrl(callback) {
     active: true,
     currentWindow: true
   }, ([currentTab]) => {
-    callback(currentTab.url);
+    if (currentTab) {
+      callback(currentTab.url);
+    }
   });
 }
 
 chrome.tabs.onActivated.addListener(updateToken);
+chrome.tabs.onUpdated.addListener(updateToken);
 
 chrome.alarms.create({delayInMinutes: 2});
 chrome.alarms.onAlarm.addListener(() => {
