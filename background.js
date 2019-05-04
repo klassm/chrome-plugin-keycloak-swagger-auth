@@ -14,7 +14,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     const headers = details.requestHeaders;
     const targetUrl = details.url;
 
-    if (currentTabUrl && isSwaggerUi(currentTabUrl) && !findHeader(headers, 'Authorization') && !isSwaggerUi(targetUrl)) {
+    if (bearerToken && currentTabUrl && isSwaggerUi(currentTabUrl) && !findHeader(headers, 'Authorization') && !isSwaggerUi(targetUrl)) {
       console.log("modifying header for target " + targetUrl);
       headers.push({name: 'Authorization', value: `Bearer ${bearerToken}`});
     }
@@ -28,7 +28,7 @@ function updateToken() {
   loadCurrentTabUrl(async (url) => {
     if (isSwaggerUi(url)) {
       console.log("update token, tab url is " + url);
-      bearerToken = await getBearerToken();
+      bearerToken = await getBearerToken(url);
       currentTabUrl = url;
     } else {
       currentTabUrl = undefined;

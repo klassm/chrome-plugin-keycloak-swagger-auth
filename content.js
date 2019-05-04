@@ -11,7 +11,7 @@ function findAuthContainer() {
 }
 
 async function sendKeycloakRequest() {
-  const token = await getBearerToken();
+  const token = await getBearerToken(window.location.href);
   const input = findAuthContainer().getElementsByTagName("input")[0];
 
   const event = new Event('input', { bubbles: true });

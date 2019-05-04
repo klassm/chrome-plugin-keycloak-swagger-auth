@@ -2,14 +2,42 @@
 <html>
 <head>
     <style>
+        body {
+            width: 500px;
+            margin: 10px;
+        }
+
         label {
             width: 100px;
             display: inline-block;
         }
+
+        table tr td {
+            margin: 3px;
+        }
+        table tr td i {
+            margin-right: 3px;
+        }
     </style>
 </head>
 <body>
-<div>
+<div id="list">
+    <h3>Configurations</h3>
+    <table>
+        <tbody id="listElements">
+        </tbody>
+    </table>
+</div>
+
+<div id="formData">
+    <h3>Create new / update existing</h3>
+
+    <p>Note: When entering an existing url regexp, the configuration will be overwritten.</p>
+
+    <div>
+        <label for="urlRegexp">URL Regexp</label>
+        <input id="urlRegexp"/>
+    </div>
     <div>
         <label for="keycloakUrl">Keycloak URL</label>
         <input id="keycloakUrl"/>
@@ -29,8 +57,12 @@
 
     <div>
         <button id="submitForm">Submit</button>
+        <button id="clearForm">Clear</button>
     </div>
 </div>
 </body>
+<script src="lib.js"></script>
 <script src="options.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </html>
