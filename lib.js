@@ -48,6 +48,7 @@ async function getBearerToken(url) {
   const axiosConfig = {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json'
     },
   };
   const params = `client_id=admin-cli&grant_type=password&password=${encodeURIComponent(password)}&username=${username}`;

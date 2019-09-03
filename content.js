@@ -11,12 +11,16 @@ function findAuthContainer() {
 }
 
 async function sendKeycloakRequest() {
-  const token = await getBearerToken(window.location.href);
-  const input = findAuthContainer().getElementsByTagName("input")[0];
+  chrome.runtime.sendMessage(
+      {contentScriptQuery: "getBearerToken"},
+      token => {
+        const input = findAuthContainer().getElementsByTagName("input")[0];
 
-  const event = new Event('input', { bubbles: true });
-  input.value = token;
-  input.dispatchEvent(event);
+        const event = new Event('input', { bubbles: true });
+        input.value = token;
+        input.dispatchEvent(event);
+      }
+  );
 }
 
 async function nodeInsertedCallback(event) {
